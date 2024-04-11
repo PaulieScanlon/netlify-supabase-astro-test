@@ -1,0 +1,22 @@
+---
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(import.meta.env.SUPABASE_URL, import.meta.env.SUPABASE_ANON_KEY);
+
+let data = null;
+
+try {
+  const response = await supabase.from('users').select();
+  data = response.data;
+} catch (error) {
+  console.error(error);
+}
+---
+
+<html lang='en'>
+  <body>
+    <a href='/'>Back</a>
+    <h1>Supabase Client</h1>
+    <pre>{JSON.stringify(data, null, 2)}</pre>
+  </body>
+</html>

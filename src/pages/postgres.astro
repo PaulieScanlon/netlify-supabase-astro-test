@@ -1,0 +1,36 @@
+---
+import pkg from 'pg';
+const { Pool } = pkg;
+
+const pool = new Pool({
+  connectionString: import.meta.env.CONNECTION_STRING,
+  ssl: false,
+});
+
+const client = await pool.connect();
+
+interface user {
+  first_name: string;
+  last_name: string;
+  email: string;
+}
+
+let data = null;
+
+try {
+  const response = await client.query<user[]>('SELECT * FROM users');
+  data = response.rows;
+} catch (error) {
+  console.error(error);
+} finally {
+  client.release();
+}
+---
+
+<html lang='en'>
+  <body>
+    <a href='/'>Back</a>
+    <h1>Postgres</h1>
+    <pre>{JSON.stringify(data, null, 2)}</pre>
+  </body>
+</html>

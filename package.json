@@ -1,0 +1,19 @@
+{
+  "name": "netlify-supabase-astro-test",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.10",
+    "@supabase/supabase-js": "^2.42.1",
+    "astro": "^4.0.6",
+    "pg": "^8.11.5",
+    "typescript": "^5.4.5"
+  }
+}
